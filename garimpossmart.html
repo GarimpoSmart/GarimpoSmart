@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GarimpoSmart_ | Achados Incríveis</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E8002D;
+    --red-dark: #b80024;
+    --white: #ffffff;
+    --black: #111111;
+    --blue: #003DA5;
+    --gray: #f5f5f5;
+    --gray2: #e0e0e0;
+    --text-muted: #777;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #ffffff; font-family: 'Barlow', sans-serif; color: var(--black); min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(232,0,45,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(232,0,45,0.04) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 2rem 1.2rem 3rem; position: relative; z-index: 1; }
+  .header { text-align: center; margin-bottom: 2rem; animation: fadeDown 0.6s ease both; }
+  .logo-badge { display: inline-block; background: var(--red); color: white; font-family: 'Black Han Sans', sans-serif; font-size: 11px; letter-spacing: 3px; padding: 4px 12px; border-radius: 2px; margin-bottom: 10px; text-transform: uppercase; }
+  .brand-name { font-family: 'Black Han Sans', sans-serif; font-size: 36px; letter-spacing: -1px; line-height: 1; color: var(--black); margin-bottom: 6px; }
+  .brand-name span { color: var(--red); }
+  .brand-sub { font-size: 13px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+  .divider { width: 40px; height: 3px; background: var(--red); margin: 14px auto; border-radius: 2px; }
+  .stats { display: flex; justify-content: center; gap: 24px; margin-bottom: 2rem; animation: fadeUp 0.6s 0.2s ease both; }
+  .stat { text-align: center; }
+  .stat-val { font-family: 'Black Han Sans', sans-serif; font-size: 20px; color: var(--red); }
+  .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+  .section-label span { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--gray2); }
+  .products { display: flex; flex-direction: column; gap: 14px; }
+  .card { background: var(--gray); border: 1px solid var(--gray2); border-radius: 12px; overflow: hidden; position: relative; transition: transform 0.2s, border-color 0.2s; animation: fadeUp 0.6s ease both; }
+  .card:nth-child(1) { animation-delay: 0.35s; }
+  .card:nth-child(2) { animation-delay: 0.45s; }
+  .card:hover { transform: translateY(-2px); border-color: var(--red); }
+  .card-tag { position: absolute; top: 12px; left: 12px; background: var(--red); color: white; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; z-index: 2; }
+  .card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .card-body { padding: 1rem 1.1rem 1.2rem; }
+  .card-category { font-size: 11px; color: var(--red); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; font-weight: 600; }
+  .card-title { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 6px; line-height: 1.3; }
+  .card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .card-price { font-family: 'Black Han Sans', sans-serif; font-size: 22px; color: var(--black); }
+  .card-price small { font-family: 'Barlow', sans-serif; font-size: 12px; color: var(--text-muted); font-weight: 400; display: block; line-height: 1; margin-bottom: 2px; }
+  .btn-buy { display: inline-flex; align-items: center; gap: 6px; background: var(--red); color: white; font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 6px; text-decoration: none; letter-spacing: 0.5px; transition: background 0.15s, transform 0.1s; white-space: nowrap; }
+  .btn-buy:hover { background: var(--red-dark); transform: scale(1.03); }
+  .btn-buy svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .highlights { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .highlight { font-size: 11px; background: rgba(0,0,0,0.05); border: 1px solid var(--gray2); color: var(--text-muted); padding: 3px 8px; border-radius: 20px; }
+  .footer { margin-top: 2.5rem; text-align: center; animation: fadeUp 0.6s 0.6s ease both; }
+  .footer-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--blue); color: white; font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 20px; margin-bottom: 12px; }
+  .footer-text { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+  .footer-text a { color: var(--red); text-decoration: none; }
+  .social-row { display: flex; justify-content: center; gap: 12px; margin-top: 1.2rem; flex-wrap: wrap; }
+  .social-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--gray2); color: var(--black); font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s; }
+  .social-btn:hover { background: #ccc; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .live-dot { display: inline-block; width: 8px; height: 8px; background: var(--red); border-radius: 50%; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo-badge">🔥 Achados & Ofertas</div>
+    <div class="brand-name">Garimpo<span>Smart</span>_</div>
+    <div class="brand-sub">Os melhores achados da Shopee</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-val">100%</div><div class="stat-label">Gratuito</div></div>
+    <div class="stat"><div class="stat-val">🇧🇷</div><div class="stat-label">Brasil</div></div>
+    <div class="stat"><div class="stat-val">🔥</div><div class="stat-label">Oferta</div></div>
+  </div>
+
+  <div class="section-label">
+    <span><span class="live-dot"></span> Produtos em destaque</span>
+  </div>
+
+  <div class="products">
+
+    <!-- PRODUTO 1 -->
+    <div class="card">
+      <div class="card-tag">🔥 Oferta</div>
+      <img class="card-img" src="https://down-br.img.susercontent.com/file/sg-11134201-824hw-me1mqqajx1c73f.webp" alt="Kit Potes de Vidro">
+      <div class="card-body">
+        <div class="card-category">Cozinha & Organização</div>
+        <div class="card-title">Kit 5 Potes de Vidro Hermético com Tampa</div>
+        <div class="card-desc">Organize sua geladeira de vez! 5 potes de vidro com tampa que veda de verdade, vai no micro-ondas e fica lindo na bancada.</div>
+        <div class="highlights">
+          <span class="highlight">✅ Vai no micro-ondas</span>
+          <span class="highlight">✅ Tampa hermética</span>
+          <span class="highlight">✅ 5 tamanhos</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><small>A partir de</small>R$19,90</div>
+          <a href="https://s.shopee.com.br/5L8DBF79QD" target="_blank" class="btn-buy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Comprar
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUTO 2 -->
+    <div class="card">
+      <div class="card-tag">🇧🇷 Kit</div>
+      <img class="card-img" src="https://down-br.img.susercontent.com/file/br-11134207-7r98o-mcm7glsq90xtb6@resize_w450_nl.webp" alt="Kit Chinelo Brasil">
+      <div class="card-body">
+        <div class="card-category">Moda & Verão</div>
+        <div class="card-title">Kit 2 Pares Chinelo Brasil — Branco + Preto</div>
+        <div class="card-desc">O clássico brasileiro com solado resistente, bandeirinha do Brasil e acabamento impecável. Perfeito para praia e piscina!</div>
+        <div class="highlights">
+          <span class="highlight">✅ 2 pares</span>
+          <span class="highlight">✅ Solado resistente</span>
+          <span class="highlight">✅ Bandeira Brasil</span>
+        </div>
+        <div class="card-footer">
+          <div class="card-price"><small>A partir de</small>R$29,90</div>
+          <a href="https://s.shopee.com.br/5L8D7zZx4C" target="_blank" class="btn-buy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Comprar
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-badge">🛡️ Compra segura via Shopee</div>
+    <div class="footer-text">
+      Links de afiliado — <a href="#">#publicidade</a><br>
+      Ao comprar você apoia o GarimpoSmart_ ❤️
+    </div>
+    <div class="social-row">
+      <a href="https://www.tiktok.com/@garimposmart_?_r=1&_t=ZS-95p4RxszPee" class="social-btn">📱 TikTok</a>
+      <a href="https://www.instagram.com/garimposmart__/" class="social-btn">📸 Instagram</a>
+      <a href="#" class="social-btn">▶️ YouTube</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
